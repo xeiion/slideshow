@@ -8,6 +8,7 @@ $(document).ready(function () {
     var Timer;
 
     var NewCount = '';
+    var CheckNum = 0;
 
 // Generating Links depending on items
 
@@ -29,14 +30,20 @@ $(document).ready(function () {
 
             $('#slideShow').removeAttr('data');
             count++;
-
+            CheckNum++;
             if (count === Container.children().length + 1) {
                 count = 1;
                 PreviousImage = 4;
             } else {
-                PreviousImage = count - 1;
-            }
+                if(CheckNum !== 1){
+                          PreviousImage = count -1; 
+                }else {
+              PreviousImage = count;
+                }
 
+                
+            }
+        
             $('#slideShow .item').hide().removeClass('active').css('opacity', 0);
 
             $('#slideShow .item:nth-child(' + PreviousImage + '').show().css('opacity', '1');
