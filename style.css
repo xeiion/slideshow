@@ -1,0 +1,10 @@
+
+.item {
+    transition:  ease-in-out all 2s;
+    position: absolute;
+}
+
+.active {
+    opacity: 1;
+}
+
