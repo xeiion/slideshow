@@ -8,7 +8,6 @@ $(document).ready(function () {
     var Timer;
 
     var NewCount = '';
-    var CheckNum = 0;
 
 // Generating Links depending on items
 
@@ -29,12 +28,11 @@ $(document).ready(function () {
         Timer = setInterval(function () {
             $('#slideShow').removeAttr('data');
             count++;
-            CheckNum++;
             if (count === Container.children().length + 1) {
                 count = 1;
                 PreviousImage = 4;
             } else {
-                if (CheckNum !== 1) {
+                if (count !== 1) {
                     PreviousImage = count - 1;
                 } else {
                     PreviousImage = count;
