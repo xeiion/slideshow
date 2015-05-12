@@ -27,7 +27,6 @@ $(document).ready(function () {
         }
 
         Timer = setInterval(function () {
-
             $('#slideShow').removeAttr('data');
             count++;
             CheckNum++;
@@ -35,19 +34,20 @@ $(document).ready(function () {
                 count = 1;
                 PreviousImage = 4;
             } else {
-                if(CheckNum !== 1){
-                          PreviousImage = count -1; 
-                }else {
-              PreviousImage = count;
+                if (CheckNum !== 1) {
+                    PreviousImage = count - 1;
+                } else {
+                    PreviousImage = count;
                 }
 
-                
+
             }
-        
+
             $('#slideShow .item').hide().removeClass('active').css('opacity', 0);
-
             $('#slideShow .item:nth-child(' + PreviousImage + '').show().css('opacity', '1');
-
+            $('.item h1').css('right', '0').animate({'right': '50%'}, 200);
+            $('.item p').css('right', '0').animate({'right': '50%'}, 700);
+            $('.progressbar').css('width', '0').animate({'width': '100%'}, 1980);
             $('#slideShow .item:nth-child(' + count + '').show().addClass('active').animate({'opacity': '1'}, animateSpeed);
         }, pause);
     }
