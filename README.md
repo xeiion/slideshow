@@ -9,18 +9,26 @@ Just leave ul empty auto generating links
     <div id="slideShow">
           <div class="item">
             <img src=" image" />
+            <h1></h1>
+            <p></p>
         </div>
         
         <div class="item">
             <img src="image" />
+              <h1></h1>
+            <p></p>
         </div>
         
         <div class="item">
             <img src="image" />
+              <h1></h1>
+            <p></p>
         </div>
         
         <div class="item">
             <img src="image" />
+              <h1></h1>
+            <p></p>
         </div>
         
     </div>
