@@ -6,11 +6,10 @@ $(document).ready(function () {
     var listItems = Container.children('.item');
     var count = 0;
     var Timer;
-
+    progress = '';
     var NewCount = '';
 
 // Generating Links depending on items
-
 
     $('.item').each(function (i) {
         $('.Slideshow-Controls ul').append('<li><a data-slide-to="' + (i + 1) + '" href="">' + (i + 1) + '</a></li>');
@@ -37,15 +36,17 @@ $(document).ready(function () {
                 } else {
                     PreviousImage = count;
                 }
-
-
             }
 
+            totaltWidth = $(window).width();
             $('#slideShow .item').hide().removeClass('active').css('opacity', 0);
             $('#slideShow .item:nth-child(' + PreviousImage + '').show().css('opacity', '1');
             $('.item h1').css('right', '0').animate({'right': '50%'}, 200);
             $('.item p').css('right', '0').animate({'right': '50%'}, 700);
-            $('.progressbar').css('width', '0').animate({'width': '100%'}, 1980);
+            if ($('.progressbar').width() === totaltWidth) {
+                $('.progressbar').css('width', '0%');
+            }
+            progress = $('.progressbar').animate({'width': '100%'}, 1980);
             $('#slideShow .item:nth-child(' + count + '').show().addClass('active').animate({'opacity': '1'}, animateSpeed);
         }, pause);
     }
@@ -54,16 +55,25 @@ $(document).ready(function () {
     function stopSlide() {
         clearInterval(Timer);
     }
-
 //setting the new item on click
 
-    $('a').click(function (event) {
+    $('.Slideshow-Controls ul li a').click(function (event) {
         event.preventDefault();
         NewCount = $(this).attr('data-slide-to');
         if (NewCount !== count) {
             $('a').removeClass('active').removeAttr('class');
             $(this).addClass('active');
-            $('#slideShow .item').hide().removeClass('active');
+            $('#slideShow .item').hide().removeClass('active').css('opacity', '0');
+            $('.item h1').css('right', '0').animate({'right': '50%'}, 200);
+            $('.item p').css('right', '0').animate({'right': '50%'}, 700);
+            $('.progressbar').css('width', '0%');
+
+            if (count === '') {
+                $('#slideShow .item:nth-child(1)').show().css('opacity', '1');
+            } else {
+                $('#slideShow .item:nth-child(' + count + '').show().css('opacity', '1');
+            }
+
             $("#slideShow .item:nth-child(" + NewCount + ")").show().addClass('active').animate({'opacity': '1'}, animateSpeed);
             stopSlide();
             startSlide();
@@ -71,12 +81,16 @@ $(document).ready(function () {
     });
 //stopping the slideshow on hover
     $('#slideShow').mouseover(function () {
+        if (progress) {
+            progress.stop();
+        }
         stopSlide();
     });
 
 //starting the slideshow on mouse out
     $('#slideShow').mouseout(function () {
         count = $('#slideShow').attr('data', count);
+        width = $('.progressbar').width();
         startSlide();
     });
 
