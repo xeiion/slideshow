@@ -1,6 +1,6 @@
 # slideshow
 
-
+Just leave ul empty auto generating links
 
     <div id="slideShow">
     
