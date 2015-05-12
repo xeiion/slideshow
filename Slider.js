@@ -1,6 +1,6 @@
 $(document).ready(function () {
     var pause = 2000;
-    var animateSpeed = 300;
+    var animateSpeed = 1000;
 
     var Container = $('#slideShow');
     var listItems = Container.children('.item');
@@ -39,7 +39,7 @@ $(document).ready(function () {
 
             $('#slideShow .item').hide().removeClass('active').css('opacity', 0);
 
-            $('#slideShow .item:nth-child(' + PreviousImage + '').show();
+            $('#slideShow .item:nth-child(' + PreviousImage + '').show().css('opacity', '1');
 
             $('#slideShow .item:nth-child(' + count + '').show().addClass('active').animate({'opacity': '1'}, animateSpeed);
         }, pause);
