@@ -11,7 +11,7 @@ $(document).ready(function () {
 
 // Generating Links depending on items
 
-    var link = $('.item').length;
+
     $('.item').each(function (i) {
         $('.Slideshow-Controls ul').append('<li><a data-slide-to="' + (i + 1) + '" href="">' + (i + 1) + '</a></li>');
     });
