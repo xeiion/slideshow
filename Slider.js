@@ -19,13 +19,28 @@ $(document).ready(function () {
 
 // Starting slideshow
     function startSlide() {
-        count = NewCount;
+        if ($('#slideShow').attr('data')) {
+            count = $('#slideShow').attr('data');
+        } else {
+            count = NewCount;
+        }
+
         Timer = setInterval(function () {
+
+            $('#slideShow').removeAttr('data');
             count++;
+
             if (count === Container.children().length + 1) {
                 count = 1;
+                PreviousImage = 4;
+            } else {
+                PreviousImage = count - 1;
             }
+
             $('#slideShow .item').hide().removeClass('active').css('opacity', 0);
+
+            $('#slideShow .item:nth-child(' + PreviousImage + '').show();
+
             $('#slideShow .item:nth-child(' + count + '').show().addClass('active').animate({'opacity': '1'}, animateSpeed);
         }, pause);
     }
@@ -56,6 +71,7 @@ $(document).ready(function () {
 
 //starting the slideshow on mouse out
     $('#slideShow').mouseout(function () {
+        count = $('#slideShow').attr('data', count);
         startSlide();
     });
 
