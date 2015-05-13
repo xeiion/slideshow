@@ -26,9 +26,7 @@
             progress.stop();
             clearInterval(ProgressTimer);
             $('.progressbar').css('width', '0');
-            Progressbar();
             $("#slideShow .item:nth-child(" + NewCount + ")").show().addClass('active').animate({'opacity': '1'}, settings.Pageload);
-
             stopslider();
             startslider();
             Progressbar();
