@@ -1,8 +1,5 @@
 # slideshow
 
-Slideshow with Stop on mouseover
-
-
 
 Just leave ul empty auto generating links
 
