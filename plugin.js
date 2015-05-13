@@ -1,3 +1,13 @@
+/**
+ * @preserve Xeiion Slide version 1.00
+ * http://jack-petersen.com
+ *
+ * Copyright 2015, Jack petersen.
+ * Free to use under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ */
+
+
 (function ($) {
 
     $.fn.xeiion_slide = function (options) {
