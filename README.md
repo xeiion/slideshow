@@ -2,6 +2,8 @@
 
 Slideshow with Stop on mouseover
 
+
+
 Just leave ul empty auto generating links
 
     <div class="progressbar"></div>
@@ -37,3 +39,9 @@ Just leave ul empty auto generating links
         <ul>
         </ul>
     </div>
+
+
+    $('#slideShow').xeiion_slide({
+        autoplay: true,
+        Pageload: 1000
+    });
