@@ -33,9 +33,17 @@
                     $('.progressbar').css('width', '0');
                 }
 
-                $("#slideShow .item:nth-child(" + NewCount + ")").show().addClass('active').animate({'opacity': '1'}, settings.Pageload);
-                stopslider();
-                startslider();
+                if (Count === '') {
+                    $('#slideShow .item:nth-child(1)').show().css('opacity', '1');
+                } else {
+                    $('#slideShow .item:nth-child(' + Count + '').show().css('opacity', '1');
+                }
+                $("#slideShow .item:nth-child(" + NewCount + ")").show().addClass('active').animate({'opacity': '1'}, settings.Pageload, function () {
+                    stopslider();
+                    startslider();
+
+                });
+
                 if (progress) {
                     Progressbar();
                 }
@@ -50,17 +58,30 @@
             } else {
                 Count = NewCount;
             }
+
             if (settings.autoplay) {
 
                 SlideTimer = setInterval(function () {
                     $('#slideShow').removeAttr('data');
+                    amount = Container.children().length;
                     Count++;
-                    if (Count === Container.children().length + 1) {
-                        Count = 1;
-                    }
-                    if (Count !== NewCount) {
-                        $('#slideShow .item').css('opacity', '0').removeClass('active').hide();
-                        $('#slideShow .item:nth-child(' + Count + '').show().addClass('active').animate({'opacity': '1'}, settings.Pageload);
+                    if (Count !== 1) {
+                        if (Count === Container.children().length + 1) {
+
+                            PreviousImage = amount;
+
+                            Count = 1;
+
+                        } else {
+                            PreviousImage = Count - 1;
+                        }
+
+                        if (Count !== NewCount) {
+
+                            $('#slideShow .item').css('opacity', 0).removeClass('active').hide();
+                            var test = $("#slideShow .item:nth-child(" + PreviousImage + ")").css('opacity', '1').show();
+                            $('#slideShow .item:nth-child(' + Count + '').show().addClass('active').animate({'opacity': '1'}, settings.Pageload);
+                        }
                     }
                 }, settings.Pageload);
             }
