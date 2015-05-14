@@ -117,12 +117,17 @@
             Restartslide(settings.Count);
             Progressbar();
         });
-        
-        
-        // arrow right function todo
-        
-        //arrow left function todo
 
+
+        $('.clickLeft').click(function () {
+            //not working
+            settings.Count++;
+        });
+
+        $('.clickRight').click(function () {
+              //not working
+            settings.Count--;
+        });
 
         Progressbar();
 
