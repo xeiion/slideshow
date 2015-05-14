@@ -17,7 +17,7 @@
             Count: 0,
             Container: $('#slideShow'),
             SlideTimer: '',
-            restart: false
+            Mouseout: false
 
         }, options);
 
@@ -33,43 +33,56 @@
         $('.Slideshow-Controls ul li a').click(function (event) {
             event.preventDefault();
             ClickValue = $(this).attr('data-slide-to');
-            Restartslide(ClickValue);
+            if (settings.count !== ClickValue) {
+                Restartslide(ClickValue);
 
+                $("#slideShow .item").fadeOut(500).removeClass('active');
+                $("#slideShow .item:nth-child(" + ClickValue + ")").addClass('active').fadeIn(500);
+                //todo fix que build ups
+            }
         });
 
 
         function startslider() {
-            settings.SlideTimer = setInterval(function () {
-                $("#slideShow .item").fadeOut(500);
-                if (!settings.restart) {
+            if (settings.autoplay) {
+
+                settings.SlideTimer = setInterval(function () {
+                    if (settings.Mouseout) {
+                        settings.Mouseout = false;
+                    } else {
+                        $("#slideShow .item").fadeOut(500);
+                    }
+
                     settings.Count++;
-                }
 
-                if (settings.Count === settings.Container.children().length + 1) {
-                    settings.Count = 1;
+                    if (settings.Count === settings.Container.children().length + 1) {
+                        settings.Count = 1;
 
-                }
-                settings.restart = false;
-                if (!settings.Count) {
-                    settings.Count = 1;
-                }
+                    }
+                    if (!settings.Count) {
+                        settings.Count = 1;
+                    }
 
-                $("#slideShow .item").removeClass('active');
-                $("#slideShow .item:nth-child(" + settings.Count + ")").addClass('active').fadeIn(500);
-            }, settings.Pageload);
-
+                    $("#slideShow .item").removeClass('active');
+                    $("#slideShow .item:nth-child(" + settings.Count + ")").addClass('active').fadeIn(500);
+                }, settings.Pageload);
+            } else {
+                //fix white background on false auto play loading first todo
+                //add fadein/fadeout speed option
+            }
         }
 
         function Restartslide(id) {
             stopslider();
             settings.Count = id;
-            settings.restart = true;
             startslider();
         }
 
 
         function stopslider() {
-            clearInterval(ProgressTimer);
+            if (settings.autoplay) {
+                clearInterval(ProgressTimer);
+            }
             clearInterval(settings.SlideTimer);
         }
 
@@ -89,8 +102,10 @@
 
 
         $('#slideShow').mouseover(function () {
-            if (progress) {
-                progress.stop();
+            if (settings.autoplay) {
+                if (progress) {
+                    progress.stop();
+                }
             }
             stopslider();
         });
@@ -98,16 +113,18 @@
 
         $('#slideShow').mouseout(function () {
             width = $('.progressbar').width();
-            console.log(settings.Count);
+            settings.Mouseout = true;
             Restartslide(settings.Count);
             Progressbar();
         });
+        
+        
+        // arrow right function todo
+        
+        //arrow left function todo
 
 
         Progressbar();
-
-
-
 
         if (settings.autoplay) {
             startslider();
