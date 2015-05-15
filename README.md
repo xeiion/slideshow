@@ -2,21 +2,10 @@
 
 <div id="slideShow">
     <div class="item active">
-        <img src="img" />
-        <h1>123</h1>
-        <p>123123</p>
+      img tag
+      h1
+      p
     </div>
-    <div class="item">
-        <img src="img" />
-        <h1>123</h1>
-        <p>123123</p>
-    </div>
-    <div class="item">
-        <img src="img" />
-        <h1>123</h1>
-        <p>123123</p>
-    </div>
-
 
 </div>
     <div class="Slideshow-Controls">
