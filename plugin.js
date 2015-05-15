@@ -16,14 +16,10 @@
             ProgressTimer: 0,
             Count: 0,
             Container: $('#slideShow'),
-            SlideTimer: '',
-            Mouseout: false
+            SlideTimer: ''
 
         }, options);
-
-
-
-
+        var progress;
 
         $('.item').each(function (i) {
             $('.Slideshow-Controls ul').append('<li><a data-slide-to="' + (i + 1) + '" href="">' + (i + 1) + '</a></li>');
@@ -36,9 +32,8 @@
             if (settings.count !== ClickValue) {
                 Restartslide(ClickValue);
 
-                $("#slideShow .item").fadeOut(500).removeClass('active');
-                $("#slideShow .item:nth-child(" + ClickValue + ")").addClass('active').fadeIn(500);
-                //todo fix que build ups
+                $("#slideShow .item").stop().fadeOut(settings.AnimateSpeed).removeClass('active');
+                $("#slideShow .item:nth-child(" + ClickValue + ")").stop().addClass('active').fadeIn(settings.AnimateSpeed);
             }
         });
 
@@ -47,25 +42,18 @@
             if (settings.autoplay) {
 
                 settings.SlideTimer = setInterval(function () {
-                    if (settings.Mouseout) {
-                        settings.Mouseout = false;
-                    } else {
-                        $("#slideShow .item").fadeOut(500);
-                    }
 
+                    $("#slideShow .item").fadeOut(settings.AnimateSpeed);
                     settings.Count++;
 
                     if (settings.Count === settings.Container.children().length + 1) {
                         settings.Count = 1;
 
                     }
-                    if (!settings.Count) {
-                        settings.Count = 1;
-                    }
 
                     $("#slideShow .item").removeClass('active');
-                    $("#slideShow .item:nth-child(" + settings.Count + ")").addClass('active').fadeIn(500);
-                }, settings.Pageload);
+                    $("#slideShow .item:nth-child(" + settings.Count + ")").addClass('active').fadeIn(settings.AnimateSpeed);
+                }, settings.pageLength);
             } else {
                 //fix white background on false auto play loading first todo
                 //add fadein/fadeout speed option
@@ -75,6 +63,8 @@
         function Restartslide(id) {
             stopslider();
             settings.Count = id;
+            Progressbar();
+
             startslider();
         }
 
@@ -95,8 +85,9 @@
                     if ($('.progressbar').width() === totaltWidth) {
                         $('.progressbar').css('width', '0%');
                     }
-                    progress = $('.progressbar').animate({'width': '100%'}, settings.Pageload - 20);
-                }, settings.Pageload);
+
+                    progress = $('.progressbar').animate({'width': '100%'}, settings.pageLength - 20);
+                }, settings.pageLength);
             }
         }
 
@@ -112,21 +103,36 @@
 
 
         $('#slideShow').mouseout(function () {
-            width = $('.progressbar').width();
-            settings.Mouseout = true;
             Restartslide(settings.Count);
             Progressbar();
         });
 
 
-        $('.clickLeft').click(function () {
-            //not working
-            settings.Count++;
+        $('.left a').click(function (event) {
+            event.preventDefault();
+
+            settings.Count--;
+
+            if (settings.Count <= 0) {
+                settings.Count = settings.Container.children().length;
+            }
+            $("#slideShow .item").fadeOut(settings.AnimateSpeed).removeClass('active');
+            $("#slideShow .item:nth-child(" + settings.Count + ")").addClass('active').fadeIn(settings.AnimateSpeed);
+            Restartslide(settings.Count);
+            Progressbar();
         });
 
-        $('.clickRight').click(function () {
-              //not working
-            settings.Count--;
+        $('.right a').click(function (event) {
+            event.preventDefault();
+
+            settings.Count++;
+            if (settings.Count === settings.Container.children().length + 1) {
+                settings.Count = 1;
+            }
+            $("#slideShow .item").fadeOut(settings.AnimateSpeed).removeClass('active');
+            $("#slideShow .item:nth-child(" + settings.Count + ")").addClass('active').fadeIn(settings.AnimateSpeed);
+            Restartslide(settings.Count);
+
         });
 
         Progressbar();
