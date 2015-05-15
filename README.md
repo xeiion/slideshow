@@ -1,44 +1,37 @@
-# slideshow
+#Simple slide show
 
-
-Just leave ul empty auto generating links
-
-    <div class="progressbar"></div>
-    
-    <div id="slideShow">
-          <div class="item">
-            <img src=" image" />
-            <h1></h1>
-            <p></p>
-        </div>
-        
-        <div class="item">
-            <img src="image" />
-              <h1></h1>
-            <p></p>
-        </div>
-        
-        <div class="item">
-            <img src="image" />
-              <h1></h1>
-            <p></p>
-        </div>
-        
-        <div class="item">
-            <img src="image" />
-              <h1></h1>
-            <p></p>
-        </div>
-        
+<div id="slideShow">
+    <div class="item active">
+        <img src="img" />
+        <h1>123</h1>
+        <p>123123</p>
+    </div>
+    <div class="item">
+        <img src="img" />
+        <h1>123</h1>
+        <p>123123</p>
+    </div>
+    <div class="item">
+        <img src="img" />
+        <h1>123</h1>
+        <p>123123</p>
     </div>
 
+
+</div>
     <div class="Slideshow-Controls">
-        <ul>
-        </ul>
+        <div class="left">
+            <a  href=""><i class="fa fa-2x fa-arrow-left"></i></a>
+        </div>
+        <div class="right">
+            <a href=""><i class="fa fa-2x fa-arrow-right"></i></a>
+        </div>
+        <ul></ul>
     </div>
-
-
-    $('#slideShow').xeiion_slide({
-        autoplay: true,
-        Pageload: 1000
+    
+       $('#slideShow').xeiion_slide({
+        pageLength: 3000,
+        AnimateSpeed: 500,
+        autoplay: true
     });
+    
