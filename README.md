@@ -3,8 +3,10 @@
 <div id="slideShow">
     <div class="item active">
       img tag
-      h1
-      p
+    htag
+    
+      ptag
+      
     </div>
 
 </div>
