@@ -6,8 +6,8 @@
  * Free to use under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
  */
- 
- 
+
+
 (function ($) {
 
     $.fn.xeiion_slide = function (options) {
@@ -31,7 +31,14 @@
                 Restartslide(ClickValue);
 
                 $("#slideShow .item").stop().fadeOut(settings.AnimateSpeed).removeClass('active');
+                if (settings.Effect === 'explode') {
+                    $("#slideShow .item img").hide("explode",{pieces:64});
+                }
+
                 $("#slideShow .item:nth-child(" + ClickValue + ")").stop().addClass('active').fadeIn(settings.AnimateSpeed);
+                if (settings.Effect === 'explode') {
+                    $("#slideShow .item:nth-child(" + ClickValue + ") img").show("explode",{pieces:64});
+                }
             }
         });
 
@@ -54,7 +61,15 @@
                     }
 
                     $("#slideShow .item").removeClass('active');
+                    if (settings.Effect === 'explode') {
+                        $("#slideShow .item img").hide("explode",{pieces:64});
+                    }
+
                     $("#slideShow .item:nth-child(" + settings.Count + ")").addClass('active').fadeIn(settings.AnimateSpeed);
+                    if (settings.Effect === 'explode') {
+                        $("#slideShow .item:nth-child(" + settings.Count + ") img").show("explode",{pieces:64});
+                    }
+
                 }, settings.pageLength);
             }
         }
@@ -91,7 +106,15 @@
                 settings.Count = settings.Container.children().length;
             }
             $("#slideShow .item").stop().fadeOut(settings.AnimateSpeed).removeClass('active');
+            if (settings.Effect === 'explode') {
+                $("#slideShow .item img").hide("explode",{pieces:64});
+            }
+
             $("#slideShow .item:nth-child(" + settings.Count + ")").stop().addClass('active').fadeIn(settings.AnimateSpeed);
+            if (settings.Effect === 'explode') {
+                $("#slideShow .item:nth-child(" + settings.Count + ") img").show("explode",{pieces:64});
+            }
+
             Restartslide(settings.Count);
         });
 
@@ -108,7 +131,15 @@
             }
 
             $("#slideShow .item").stop().fadeOut(settings.AnimateSpeed).removeClass('active');
+            if (settings.Effect === 'explode') {
+                $("#slideShow .item img").hide("explode",{pieces:64});
+            }
+
             $("#slideShow .item:nth-child(" + settings.Count + ")").stop().addClass('active').fadeIn(settings.AnimateSpeed);
+            if (settings.Effect === 'explode') {
+                $("#slideShow .item:nth-child(" + settings.Count + ") img").show("explode",{pieces:64});
+            }
+
             Restartslide(settings.Count);
 
         });
