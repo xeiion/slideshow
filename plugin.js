@@ -37,13 +37,19 @@
 
             $('.Slideshow-Controls .right').css(
                     {'right': '10px',
-                        'top': '45%'
+                        'top': '45%', 'color': 'blue'
                     }
             );
 
             $('.Slideshow-Controls .left').css(
                     {'left': '10px',
                         'top': '45%'
+                    }
+            );
+
+            $('.Slideshow-Controls .left a,.Slideshow-Controls .right a').css(
+                    {
+                        'color': 'rgb(51, 153, 255)'
                     }
             );
 
