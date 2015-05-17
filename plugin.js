@@ -19,6 +19,10 @@
 
         }, options);
 
+        if (!settings.color) {
+            settings.color = 'rgb(51, 153, 255)';
+        };
+
         function SetCss() {
 
             $('body').css('overflow', 'hidden');
@@ -36,7 +40,7 @@
                         'position': 'absolute',
                         'padding': ' 5px 8px 15px 8px',
                         'border': 'solid 1px black',
-                        'background': 'rgb(51, 153, 255)'
+                        'background': settings.color
                     }
             ).hide();
 
@@ -108,7 +112,7 @@
                     }
             );
 
-            $('.Slideshow-Controls ul .active img').css('border', 'solid 1px #3399FF');
+            $('.Slideshow-Controls ul .active img').css('border', 'solid 1px '+ settings.color);
 
             $('li').css(
                     {
@@ -129,7 +133,7 @@
                 'border': 'solid 1px black'}
             );
 
-            $(".Slideshow-Controls ul li:nth-child(" + ClickValue + ") img").css('border', 'solid 1px #3399FF');
+            $(".Slideshow-Controls ul li:nth-child(" + ClickValue + ") img").css('border', 'solid 1px '+ settings.color);
 
             if (settings.Count !== ClickValue) {
                 Restartslide(ClickValue);
@@ -172,7 +176,7 @@
                             }
                     );
 
-                    $('.Slideshow-Controls ul .active img').css('border', 'solid 1px #3399FF');
+                    $('.Slideshow-Controls ul .active img').css('border', 'solid 1px '+settings.color);
                 }, settings.pageLength);
             }
         }
@@ -219,7 +223,7 @@
                     }
             );
 
-            $('.Slideshow-Controls ul .active img').css('border', 'solid 1px #3399FF');
+            $('.Slideshow-Controls ul .active img').css('border', 'solid 1px '+settings.color);
 
             $("#slideShow .item").stop().fadeOut(settings.AnimateSpeed).removeClass('active');
 
@@ -249,7 +253,7 @@
                     }
             );
 
-            $('.Slideshow-Controls ul .active img').css('border', 'solid 1px #3399FF');
+            $('.Slideshow-Controls ul .active img').css('border', 'solid 1px '+settings.color);
 
             $("#slideShow .item").stop().fadeOut(settings.AnimateSpeed).removeClass('active');
 
