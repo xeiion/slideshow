@@ -25,13 +25,11 @@
         ;
 
         function SetCss() {
-            //
             $('.Slider').css(
                     {
                         'position': 'relative'
                     });
 
-            //
             $('.SliderNavigation').css(
                     {
                         'position': 'absolute',
@@ -48,48 +46,33 @@
                     {
                         'position': 'relative',
                         'width': '100%',
-                        'overflow': 'hidden',
-                        'text-align': 'center'
+                        'height': 'auto'
                     });
 
             $('.inner-slider > .item > img').css(
                     {
                         'margin': 'auto',
-                        'text-align': 'center',
-                        'width': '100%'
+                        'width': '100%',
+                        'position': 'absolute'
                     });
 
-            $('img').css(
-                    {
-                        'position': 'absolute',
-                        'top': '0',
-                        'left': '0'
-                    });
-
-            $('.active').css({'padding-top': '50%'});
 
             $('.item').hide();
 
             $('.control').css(
                     {
-                        'position': 'absolute',
-                        'top': '50%',
-                        'bottom': '0',
-                        'left': '0',
-                        'width': '15%',
-                        'font-size:': '1vh',
-                        'text-align': 'center',
-                        'text-shadow': '0 1px 2px rgba(0,0,0,.6)'
+                        'position': 'absolute'
                     });
 
             $('.control a').css(
                     {
                         'text-decoration': 'none',
-                        'padding': '50px 10px',
+                        'padding': '5px 20px 10px 20px',
                         'color': 'black',
+                        'left': '0',
                         'background': settings.color,
-                        'border': 'solid 1px black',
-                        'display':'none'
+                        'border': 'solid 1px black'
+
                     });
 
             $('.right').css(
@@ -101,6 +84,7 @@
         }
 
         SetCss();
+        console.log($('img').height());
 
         $('.item').each(function (i) {
             imageSource = $(".item:nth-child(" + (i + 1) + ") img").attr('src');
@@ -151,8 +135,6 @@
                 $(".inner-slider .item").stop().fadeOut(settings.AnimateSpeed).removeClass('active');
 
                 $(".inner-slider .item:nth-child(" + ClickValue + ")").stop().addClass('active').fadeIn(settings.AnimateSpeed);
-                $('.item').css('padding-top', '0');
-                $('.active').css('padding-top', '50%');
             }
         });
 
@@ -186,8 +168,7 @@
                                 'border': 'solid 1px black'
                             }
                     );
-                    $('.item').css('padding-top', '0');
-                    $('.active').css('padding-top', '50%');
+
                     $('.SliderNavigation .active img').css('border', 'solid 1px ' + settings.color);
                 }, settings.pageLength);
             }
@@ -207,12 +188,12 @@
 
 
         $('.Slider').mouseover(function () {
-            $('.control a').show();
+
             stopslider();
         });
 
         $('.Slider').mouseout(function () {
-           $('.control a').hide();
+
             Restartslide(settings.Count);
         });
 
@@ -240,8 +221,7 @@
             $(".inner-slider .item").stop().fadeOut(settings.AnimateSpeed).removeClass('active');
 
             $(".inner-slider .item:nth-child(" + settings.Count + ")").stop().addClass('active').fadeIn(settings.AnimateSpeed);
-            $('.item').css('padding-top', '0');
-            $('.active').css('padding-top', '50%');
+
             Restartslide(settings.Count);
         });
 
@@ -272,8 +252,7 @@
             $(".inner-slider .item").stop().fadeOut(settings.AnimateSpeed).removeClass('active');
 
             $(".inner-slider .item:nth-child(" + settings.Count + ")").stop().addClass('active').fadeIn(settings.AnimateSpeed);
-            $('.item').css('padding-top', '0');
-            $('.active').css('padding-top', '50%');
+
             Restartslide(settings.Count);
 
         });
