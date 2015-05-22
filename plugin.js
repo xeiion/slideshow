@@ -1,5 +1,5 @@
 /**
- * @preserve Xeiion simple slider version 1.00
+ * @preserve Xeiion simple slider version 2.00
  * http://jack-petersen.com
  *
  * Copyright 2015, Jack petersen.
@@ -7,7 +7,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-
+ 
 (function ($) {
 
     $.fn.xeiion_slide = function (options) {
